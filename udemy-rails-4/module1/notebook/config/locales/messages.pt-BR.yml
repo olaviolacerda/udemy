@@ -1,0 +1,8 @@
+"pt-BR":
+    messages:
+        confirm: Tem certeza?
+        listing: Listando
+        errors: Revise os campos abaixo...
+        created: Item criado com sucesso.
+        updated: Item atualizado com sucesso.
+        destroyed: Item deletado com sucesso.

@@ -1,0 +1,64 @@
+<%= form_for(@contact) do |f| %>
+
+
+  <div class="form-group">
+    <%= f.label :name %><br>
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :email %><br>
+    <%= f.text_field :email, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :kind_id %><br>
+    <%= f.collection_select(:kind_id, @kind_options_for_select, :id, :description, {}, {class: "form-control"})%>
+  </div>
+
+    <%= f.fields_for :address do |address_fields| %>
+      <div class="form-group">
+        <%= address_fields.label :street %><br>
+        <%= address_fields.text_field :street, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= address_fields.label :city %><br>
+        <%= address_fields.text_field :city, class: "form-control" %>
+        </div>
+      <div class="form-group">
+        <%= address_fields.label :state %><br>
+        <%= address_fields.select(:state, options_for_states(@contact.address.state), {},  {class: "form-control"}) %>
+      </div>
+    <% end %>
+
+     <div id="phones" class="form-group">
+
+       <%= f.fields_for :phones do |phones_fields| %>
+          <%= render partial: "phone_fields", locals: { f: phones_fields}  %>
+       <% end %>
+
+       <%= link_to_add_association('Adicionar Telefone', f, :phones, class: "btn btn-success") %>
+
+     </div>
+
+  <div class="form-group">
+    <%= f.label :rmk %><br>
+    <%= f.text_area :rmk, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= link_to 'Voltar', contacts_path, class: "btn btn-default" %>
+    <%= f.submit button, class: "btn btn-primary" %>
+
+  </div>
+  <% if @contact.errors.any? %>
+    <div id="error_explanation">
+      <!--#{pluralize(@contact.errors.count, "error")}-->
+      <h2><%= " #{t('messages.errors')}:" %> </h2>
+
+      <ul>
+      <% @contact.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<% end %>

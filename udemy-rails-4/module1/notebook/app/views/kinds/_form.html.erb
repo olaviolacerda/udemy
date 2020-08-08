@@ -1,0 +1,22 @@
+<%= form_for(@kind) do |f| %>
+  <% if @kind.errors.any? %>
+    <div id="error_explanation" >
+      <h2><%= pluralize(@kind.errors.count, "error") %> prohibited this kind from being saved:</h2>
+
+      <ul>
+      <% @kind.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :description %><br>
+    <%= f.text_field :description, class: "form-control" %>
+  </div>
+  <div class="form-group">
+     <%= link_to 'Voltar', contacts_path, class: "btn btn-default" %>
+    <%= f.submit "Atualizar tipo", class: "btn btn-primary" %>
+  </div>
+<% end %>

@@ -1,0 +1,9 @@
+$(() => {
+  const $modal = $('#sendMailModal')
+  $('#recipient-name').val('<%= @admin.email %>')
+  $('#modalLabel').text('Enviar email para <%= @admin.name %>')
+  $modal.modal()
+  $modal.on('shown.bs.modal', () => {
+    $('#subject-text').focus()
+  })
+})
