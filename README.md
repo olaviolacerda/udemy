@@ -1,3 +1,3 @@
-# ![Udemy Logo](assets/udemy-logo.svg) Udemy Projects
+# ![Udemy Logo](.github/udemy-logo.svg) Udemy Projects
 
 > Implemented out projects in [Udemy](https://www.udemy.com) courses.
